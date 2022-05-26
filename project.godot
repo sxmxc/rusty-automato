@@ -102,6 +102,11 @@ window/stretch/aspect="keep"
 
 enabled=PoolStringArray( "res://addons/btree/plugin.cfg", "res://addons/code_simp/plugin.cfg", "res://addons/database/plugin.cfg", "res://addons/godot-gameplay-attributes/plugin.cfg", "res://addons/godot-version-management/plugin.cfg", "res://addons/project-statistics/plugin.cfg" )
 
+[network]
+
+limits/websocket_server/max_in_buffer_kb=4096
+limits/websocket_server/max_out_buffer_kb=4096
+
 [statistics]
 
 force_include=PoolStringArray(  )
