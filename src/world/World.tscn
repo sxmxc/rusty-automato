@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/kenney_physicsAssets_v2/PNG/Wood elements/elementWood024.png" type="Texture" id=1]
+[ext_resource path="res://src/agents/BlueAgent.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/world/world_objects/food/Food.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/world/FoodSpawner.gd" type="Script" id=4]
+[ext_resource path="res://src/world/world_objects/food/CoffeeBean.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/world/world_objects/food/Apple.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/agents/YellowAgent.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/world/World.gd" type="Script" id=8]
+[ext_resource path="res://src/world/AgentSpawner.gd" type="Script" id=9]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="AgentSpawner" type="Node2D" parent="."]
+script = ExtResource( 9 )
+prey_scene = ExtResource( 7 )
+predator_scene = ExtResource( 2 )
+arena_offset = 100
+
+[node name="FoodSpawner" type="Node2D" parent="."]
+script = ExtResource( 4 )
+food_scene = ExtResource( 3 )
+arena_offset = 50
+available_food = [ ExtResource( 6 ), ExtResource( 5 ) ]
+
+[node name="Arena" type="NinePatchRect" parent="."]
+margin_right = 1022.0
+margin_bottom = 599.0
+texture = ExtResource( 1 )
+patch_margin_left = 12
+patch_margin_top = 15
+patch_margin_right = 13
+patch_margin_bottom = 12
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Arena"]
+show_behind_parent = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
+position = Vector2( 5.25394, -0.578018 )
+scale = Vector2( 0.790715, 0.996755 )
+polygon = PoolVector2Array( -8.10686, 588.488, 18.649, 589.491, 14, 2, -8, 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Arena"]
+show_behind_parent = true
+position = Vector2( 1007, 7 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena/StaticBody2D2"]
+position = Vector2( 5.25394, -0.578018 )
+scale = Vector2( 0.790715, 0.996755 )
+polygon = PoolVector2Array( -8.10686, 588.488, 18.649, 589.491, 14, 2, -8, 1 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Arena"]
+show_behind_parent = true
+position = Vector2( 6, 593 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena/StaticBody2D3"]
+position = Vector2( 1, -7.00002 )
+scale = Vector2( 0.790715, 0.996755 )
+polygon = PoolVector2Array( 1287.44, 15.0488, 1287.44, -2.00653, -7.58807, -1.0033, -6.32339, 10.0325 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Arena"]
+show_behind_parent = true
+position = Vector2( 6, 593 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Arena/StaticBody2D4"]
+position = Vector2( -3, -587 )
+scale = Vector2( 0.790715, 0.996755 )
+polygon = PoolVector2Array( 1287.44, 15.0488, 1287.44, -4.01306, -7.58807, -1.0033, -6.32339, 10.0325 )
+
+[node name="Obstacles" type="Node2D" parent="Arena"]
+
+[node name="Food" parent="." instance=ExtResource( 6 )]
+position = Vector2( 910, 486 )
+
+[node name="Food2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 628, 299 )
+
+[node name="Food3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 456, 391 )
+
+[node name="Food4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 567, 74 )
+
+[node name="Food5" parent="." instance=ExtResource( 6 )]
+position = Vector2( 138, 328 )
+
+[node name="BlueAgent" parent="." instance=ExtResource( 2 )]
+position = Vector2( 160, 159 )
+speed = 75
+look_ahead = 100
+
+[node name="YellowAgent" parent="." instance=ExtResource( 7 )]
+position = Vector2( 757, 182 )
+steer_force = 0.5
+look_ahead = 75

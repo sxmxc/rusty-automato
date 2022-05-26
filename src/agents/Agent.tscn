@@ -1,0 +1,872 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=1]
+[ext_resource path="res://addons/godot-gameplay-attributes/nodes/GameplayAttribute.gd" type="Script" id=2]
+[ext_resource path="res://addons/godot-gameplay-attributes/nodes/GameplayAttributeMap.gd" type="Script" id=3]
+[ext_resource path="res://src/agents/Agent.gd" type="Script" id=4]
+[ext_resource path="res://assets/kenney_physicsAssets_v2/PNG/Aliens/alienBlue_round.png" type="Texture" id=5]
+[ext_resource path="res://src/agents/StatBox.gd" type="Script" id=6]
+[ext_resource path="res://src/agents/AgentUI.gd" type="Script" id=7]
+[ext_resource path="res://addons/godot-gameplay-attributes/premade_gameplay_effects/AttributeRegenGameplayEffect.gd" type="Script" id=8]
+[ext_resource path="res://src/agents/Stats.gd" type="Script" id=9]
+[ext_resource path="res://addons/godot-gameplay-attributes/premade_gameplay_effects/AttributeConsumeGameplayEffect.gd" type="Script" id=10]
+[ext_resource path="res://addons/godot-gameplay-attributes/premade_gameplay_effects/RestoreGameplayEffect.gd" type="Script" id=11]
+[ext_resource path="res://addons/godot-gameplay-attributes/premade_gameplay_effects/DamageGameplayEffect.gd" type="Script" id=12]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 36.0139
+
+[node name="Agent" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="LogicTree" type="Node" parent="."]
+script = ExtResource( 1 )
+tree = {
+"connection": [ {
+"from": "priority_condition",
+"from_port": 0,
+"to": "sequence2",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 0,
+"to": "task2",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 1,
+"to": "task3",
+"to_port": 0
+}, {
+"from": "root",
+"from_port": 0,
+"to": "sequence",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 0,
+"to": "priority_selector",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 1,
+"to": "random_wait",
+"to_port": 0
+}, {
+"from": "priority_selector",
+"from_port": 0,
+"to": "priority_condition2",
+"to_port": 0
+}, {
+"from": "priority_condition2",
+"from_port": 0,
+"to": "task",
+"to_port": 0
+}, {
+"from": "priority_selector",
+"from_port": 1,
+"to": "priority_condition3",
+"to_port": 0
+}, {
+"from": "priority_condition3",
+"from_port": 0,
+"to": "priority_selector2",
+"to_port": 0
+}, {
+"from": "priority_selector2",
+"from_port": 0,
+"to": "priority_condition",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_die",
+"offset": Vector2( 940, -100 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"fn": "task_check_dead",
+"offset": Vector2( 500, -40 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition2",
+"type": 5
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_walk_to_food",
+"offset": Vector2( 1680, 80 ),
+"params": [  ],
+"size": Vector2( 349.001, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 1680, 220 ),
+"params": [  ],
+"size": Vector2( 349, 84.9999 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1480, 120 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"fn": "task_search_for_food",
+"offset": Vector2( 1100, 120 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition",
+"type": 5
+} ],
+"data": {
+"count": 1,
+"offset": Vector2( 840, 140 ),
+"size": Vector2( 189, 82 )
+},
+"name": "priority_selector2",
+"type": 4
+} ],
+"data": {
+"fn": "task_check_hungry",
+"offset": Vector2( 420, 140 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition3",
+"type": 5
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, 0 ),
+"size": Vector2( 181, 109 )
+},
+"name": "priority_selector",
+"type": 4
+}, {
+"child": [  ],
+"data": {
+"count": 3.0,
+"offset": Vector2( 120, 320 ),
+"ranges": 10.0,
+"size": Vector2( 199, 82 )
+},
+"name": "random_wait",
+"type": 16
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 0, 120 ),
+"size": Vector2( 138, 109 )
+},
+"name": "sequence",
+"type": 2
+} ],
+"data": {
+"offset": Vector2( -140, 20 ),
+"size": Vector2( 83.0001, 59.9924 )
+},
+"name": "root",
+"type": 0
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_die",
+"offset": Vector2( 940, -100 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"fn": "task_check_dead",
+"offset": Vector2( 500, -40 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition2",
+"type": 5
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_walk_to_food",
+"offset": Vector2( 1680, 80 ),
+"params": [  ],
+"size": Vector2( 349.001, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 1680, 220 ),
+"params": [  ],
+"size": Vector2( 349, 84.9999 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1480, 120 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"fn": "task_search_for_food",
+"offset": Vector2( 1100, 120 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition",
+"type": 5
+} ],
+"data": {
+"count": 1,
+"offset": Vector2( 840, 140 ),
+"size": Vector2( 189, 82 )
+},
+"name": "priority_selector2",
+"type": 4
+} ],
+"data": {
+"fn": "task_check_hungry",
+"offset": Vector2( 420, 140 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition3",
+"type": 5
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, 0 ),
+"size": Vector2( 181, 109 )
+},
+"name": "priority_selector",
+"type": 4
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_die",
+"offset": Vector2( 940, -100 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"fn": "task_check_dead",
+"offset": Vector2( 500, -40 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition2",
+"type": 5
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_walk_to_food",
+"offset": Vector2( 1680, 80 ),
+"params": [  ],
+"size": Vector2( 349.001, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 1680, 220 ),
+"params": [  ],
+"size": Vector2( 349, 84.9999 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1480, 120 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"fn": "task_search_for_food",
+"offset": Vector2( 1100, 120 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition",
+"type": 5
+} ],
+"data": {
+"count": 1,
+"offset": Vector2( 840, 140 ),
+"size": Vector2( 189, 82 )
+},
+"name": "priority_selector2",
+"type": 4
+} ],
+"data": {
+"fn": "task_check_hungry",
+"offset": Vector2( 420, 140 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition3",
+"type": 5
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, 0 ),
+"size": Vector2( 181, 109 )
+},
+"name": "priority_selector",
+"type": 4
+}, {
+"child": [  ],
+"data": {
+"count": 3.0,
+"offset": Vector2( 120, 320 ),
+"ranges": 10.0,
+"size": Vector2( 199, 82 )
+},
+"name": "random_wait",
+"type": 16
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 0, 120 ),
+"size": Vector2( 138, 109 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_die",
+"offset": Vector2( 940, -100 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"fn": "task_check_dead",
+"offset": Vector2( 500, -40 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition2",
+"type": 5
+}, {
+"child": [  ],
+"data": {
+"fn": "task_die",
+"offset": Vector2( 940, -100 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"count": 3.0,
+"offset": Vector2( 120, 320 ),
+"ranges": 10.0,
+"size": Vector2( 199, 82 )
+},
+"name": "random_wait",
+"type": 16
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_walk_to_food",
+"offset": Vector2( 1680, 80 ),
+"params": [  ],
+"size": Vector2( 349.001, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 1680, 220 ),
+"params": [  ],
+"size": Vector2( 349, 84.9999 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1480, 120 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"fn": "task_search_for_food",
+"offset": Vector2( 1100, 120 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition",
+"type": 5
+} ],
+"data": {
+"count": 1,
+"offset": Vector2( 840, 140 ),
+"size": Vector2( 189, 82 )
+},
+"name": "priority_selector2",
+"type": 4
+} ],
+"data": {
+"fn": "task_check_hungry",
+"offset": Vector2( 420, 140 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition3",
+"type": 5
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 1680, 220 ),
+"params": [  ],
+"size": Vector2( 349, 84.9999 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_walk_to_food",
+"offset": Vector2( 1680, 80 ),
+"params": [  ],
+"size": Vector2( 349.001, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 1680, 220 ),
+"params": [  ],
+"size": Vector2( 349, 84.9999 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1480, 120 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_walk_to_food",
+"offset": Vector2( 1680, 80 ),
+"params": [  ],
+"size": Vector2( 349.001, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_walk_to_food",
+"offset": Vector2( 1680, 80 ),
+"params": [  ],
+"size": Vector2( 349.001, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 1680, 220 ),
+"params": [  ],
+"size": Vector2( 349, 84.9999 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1480, 120 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"fn": "task_search_for_food",
+"offset": Vector2( 1100, 120 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition",
+"type": 5
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_walk_to_food",
+"offset": Vector2( 1680, 80 ),
+"params": [  ],
+"size": Vector2( 349.001, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 1680, 220 ),
+"params": [  ],
+"size": Vector2( 349, 84.9999 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1480, 120 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"fn": "task_search_for_food",
+"offset": Vector2( 1100, 120 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition",
+"type": 5
+} ],
+"data": {
+"count": 1,
+"offset": Vector2( 840, 140 ),
+"size": Vector2( 189, 82 )
+},
+"name": "priority_selector2",
+"type": 4
+} ],
+"root": {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_die",
+"offset": Vector2( 940, -100 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+} ],
+"data": {
+"fn": "task_check_dead",
+"offset": Vector2( 500, -40 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition2",
+"type": 5
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_walk_to_food",
+"offset": Vector2( 1680, 80 ),
+"params": [  ],
+"size": Vector2( 349.001, 85 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 1680, 220 ),
+"params": [  ],
+"size": Vector2( 349, 84.9999 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1480, 120 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"fn": "task_search_for_food",
+"offset": Vector2( 1100, 120 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition",
+"type": 5
+} ],
+"data": {
+"count": 1,
+"offset": Vector2( 840, 140 ),
+"size": Vector2( 189, 82 )
+},
+"name": "priority_selector2",
+"type": 4
+} ],
+"data": {
+"fn": "task_check_hungry",
+"offset": Vector2( 420, 140 ),
+"params": [  ],
+"size": Vector2( 349, 85 ),
+"values": [  ]
+},
+"name": "priority_condition3",
+"type": 5
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, 0 ),
+"size": Vector2( 181, 109 )
+},
+"name": "priority_selector",
+"type": 4
+}, {
+"child": [  ],
+"data": {
+"count": 3.0,
+"offset": Vector2( 120, 320 ),
+"ranges": 10.0,
+"size": Vector2( 199, 82 )
+},
+"name": "random_wait",
+"type": 16
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 0, 120 ),
+"size": Vector2( 138, 109 )
+},
+"name": "sequence",
+"type": 2
+} ],
+"data": {
+"offset": Vector2( -140, 20 ),
+"size": Vector2( 83.0001, 59.9924 )
+},
+"name": "root",
+"type": 0
+}
+}
+_tree_id = "23907701573966041155"
+
+[node name="Direction" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 50, 0 )
+
+[node name="Sprite" type="Sprite" parent="."]
+z_index = 1
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Stats" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="GameplayAttributeMap" type="Node" parent="Stats"]
+script = ExtResource( 3 )
+
+[node name="Health" type="Node" parent="Stats/GameplayAttributeMap"]
+script = ExtResource( 2 )
+max_value = 100.0
+current_value = 100.0
+
+[node name="Hunger" type="Node" parent="Stats/GameplayAttributeMap"]
+script = ExtResource( 2 )
+max_value = 100.0
+
+[node name="Energy" type="Node" parent="Stats/GameplayAttributeMap"]
+script = ExtResource( 2 )
+max_value = 100.0
+current_value = 100.0
+
+[node name="AttributeConsumeGameplayEffect" type="Node" parent="Stats/GameplayAttributeMap"]
+script = ExtResource( 10 )
+duration = 0
+attribute_name = "Energy"
+
+[node name="AttributeRegenGameplayEffect" type="Node" parent="Stats/GameplayAttributeMap"]
+script = ExtResource( 8 )
+duration = 0
+attribute_name = "Hunger"
+increment_per_second = 1.0
+
+[node name="RestoreEnergy" type="Node" parent="Stats/GameplayAttributeMap"]
+script = ExtResource( 11 )
+attribute_name = "Energy"
+value = 1.0
+
+[node name="ReduceHunger" type="Node" parent="Stats/GameplayAttributeMap"]
+script = ExtResource( 12 )
+attribute_name = "Hunger"
+damage_min = 1.0
+damage_max = 1.0
+
+[node name="AgentUI" type="CanvasLayer" parent="."]
+script = ExtResource( 7 )
+
+[node name="StatBox" type="MarginContainer" parent="AgentUI"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -551.0
+margin_top = -91.0
+margin_right = -465.0
+margin_bottom = -41.0
+script = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AgentUI/StatBox"]
+margin_right = 86.0
+margin_bottom = 50.0
+
+[node name="HealthBar" type="ProgressBar" parent="AgentUI/StatBox/VBoxContainer"]
+margin_right = 86.0
+margin_bottom = 14.0
+step = 1.0
+value = 100.0
+
+[node name="HungerBar" type="ProgressBar" parent="AgentUI/StatBox/VBoxContainer"]
+margin_top = 18.0
+margin_right = 86.0
+margin_bottom = 32.0
+step = 1.0
+
+[node name="EnergyBar" type="ProgressBar" parent="AgentUI/StatBox/VBoxContainer"]
+margin_top = 36.0
+margin_right = 86.0
+margin_bottom = 50.0
+step = 1.0
+value = 100.0
+
+[connection signal="attribute_changed" from="Stats/GameplayAttributeMap/Health" to="Stats" method="_on_Health_attribute_changed"]
+[connection signal="attribute_changed" from="Stats/GameplayAttributeMap/Hunger" to="Stats" method="_on_Hunger_attribute_changed"]
+[connection signal="attribute_changed" from="Stats/GameplayAttributeMap/Energy" to="Stats" method="_on_Energy_attribute_changed"]

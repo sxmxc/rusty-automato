@@ -1,0 +1,107 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Agent",
+"language": "GDScript",
+"path": "res://src/agents/Agent.gd"
+}, {
+"base": "TimedGameplayEffect",
+"class": "AttributeConsumeGameplayEffect",
+"language": "GDScript",
+"path": "res://addons/godot-gameplay-attributes/premade_gameplay_effects/AttributeConsumeGameplayEffect.gd"
+}, {
+"base": "TimedGameplayEffect",
+"class": "AttributeRegenGameplayEffect",
+"language": "GDScript",
+"path": "res://addons/godot-gameplay-attributes/premade_gameplay_effects/AttributeRegenGameplayEffect.gd"
+}, {
+"base": "GameplayEffect",
+"class": "DamageGameplayEffect",
+"language": "GDScript",
+"path": "res://addons/godot-gameplay-attributes/premade_gameplay_effects/DamageGameplayEffect.gd"
+}, {
+"base": "HBoxContainer",
+"class": "DataPropertyEditor",
+"language": "GDScript",
+"path": "res://addons/database/property_editor/property_editor.gd"
+}, {
+"base": "VBoxContainer",
+"class": "DataPropertyEditorWide",
+"language": "GDScript",
+"path": "res://addons/database/property_editor/property_editor_wide.gd"
+}, {
+"base": "Node",
+"class": "GameplayAttribute",
+"language": "GDScript",
+"path": "res://addons/godot-gameplay-attributes/nodes/GameplayAttribute.gd"
+}, {
+"base": "Node",
+"class": "GameplayAttributeMap",
+"language": "GDScript",
+"path": "res://addons/godot-gameplay-attributes/nodes/GameplayAttributeMap.gd"
+}, {
+"base": "Node",
+"class": "GameplayEffect",
+"language": "GDScript",
+"path": "res://addons/godot-gameplay-attributes/nodes/GameplayEffect.gd"
+}, {
+"base": "GameplayEffect",
+"class": "RestoreGameplayEffect",
+"language": "GDScript",
+"path": "res://addons/godot-gameplay-attributes/premade_gameplay_effects/RestoreGameplayEffect.gd"
+}, {
+"base": "GameplayEffect",
+"class": "TimedGameplayEffect",
+"language": "GDScript",
+"path": "res://addons/godot-gameplay-attributes/nodes/TimedGameplayEffect.gd"
+} ]
+_global_script_class_icons={
+"Agent": "",
+"AttributeConsumeGameplayEffect": "",
+"AttributeRegenGameplayEffect": "",
+"DamageGameplayEffect": "",
+"DataPropertyEditor": "",
+"DataPropertyEditorWide": "",
+"GameplayAttribute": "",
+"GameplayAttributeMap": "",
+"GameplayEffect": "",
+"RestoreGameplayEffect": "",
+"TimedGameplayEffect": ""
+}
+
+[application]
+
+config/name="rusty-automato"
+config/description="Enter an interesting project description here!"
+run/main_scene="res://src/world/World.tscn"
+config/icon="res://icon.png"
+config/version="0.0.1"
+config/build=1
+
+[autoload]
+
+BTDebugServer="*res://addons/btree/script/bt_debug_server.gd"
+EventBus="*res://autoloads/EventBus.gd"
+
+[display]
+
+window/dpi/allow_hidpi=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/btree/plugin.cfg", "res://addons/code_simp/plugin.cfg", "res://addons/database/plugin.cfg", "res://addons/godot-gameplay-attributes/plugin.cfg", "res://addons/godot-version-management/plugin.cfg", "res://addons/project-statistics/plugin.cfg" )
+
+[statistics]
+
+force_include=PoolStringArray(  )

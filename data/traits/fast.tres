@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://data/traits/category.gd" type="Script" id=1]
+[ext_resource path="res://data/stats/speed.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Fast"
+stat_modified = ExtResource( 2 )
+modify_amount = 5.0
+modify_type = 0

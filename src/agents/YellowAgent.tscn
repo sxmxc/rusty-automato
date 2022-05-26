@@ -1,0 +1,1356 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=1]
+[ext_resource path="res://addons/godot-gameplay-attributes/nodes/GameplayAttribute.gd" type="Script" id=2]
+[ext_resource path="res://addons/godot-gameplay-attributes/nodes/GameplayAttributeMap.gd" type="Script" id=3]
+[ext_resource path="res://src/agents/YellowAgent.gd" type="Script" id=4]
+[ext_resource path="res://assets/kenney_physicsAssets_v2/PNG/Aliens/alienYellow_round.png" type="Texture" id=5]
+[ext_resource path="res://src/agents/AgentUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/agents/Stats.gd" type="Script" id=9]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 33.0
+
+[node name="YellowAgent" type="KinematicBody2D" groups=["yellow"]]
+script = ExtResource( 4 )
+num_rays = 20
+look_ahead = 100
+
+[node name="LogicTree" type="Node" parent="."]
+script = ExtResource( 1 )
+tree = {
+"connection": [ {
+"from": "root",
+"from_port": 0,
+"to": "selector",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 0,
+"to": "sequence",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 0,
+"to": "task",
+"to_port": 0
+}, {
+"from": "sequence",
+"from_port": 1,
+"to": "task2",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 0,
+"to": "task3",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 1,
+"to": "task4",
+"to_port": 0
+}, {
+"from": "inverter",
+"from_port": 0,
+"to": "selector2",
+"to_port": 0
+}, {
+"from": "sequence4",
+"from_port": 0,
+"to": "task5",
+"to_port": 0
+}, {
+"from": "selector2",
+"from_port": 0,
+"to": "sequence4",
+"to_port": 0
+}, {
+"from": "selector2",
+"from_port": 1,
+"to": "sequence5",
+"to_port": 0
+}, {
+"from": "sequence4",
+"from_port": 1,
+"to": "task6",
+"to_port": 0
+}, {
+"from": "sequence5",
+"from_port": 0,
+"to": "inverter2",
+"to_port": 0
+}, {
+"from": "inverter2",
+"from_port": 0,
+"to": "task7",
+"to_port": 0
+}, {
+"from": "sequence5",
+"from_port": 1,
+"to": "task8",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 3,
+"to": "task9",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 0,
+"to": "task10",
+"to_port": 0
+}, {
+"from": "sequence3",
+"from_port": 1,
+"to": "task11",
+"to_port": 0
+}, {
+"from": "sequence2",
+"from_port": 2,
+"to": "inverter",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 1,
+"to": "sequence3",
+"to_port": 0
+}, {
+"from": "selector",
+"from_port": 2,
+"to": "sequence2",
+"to_port": 0
+} ],
+"nodes": [ {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_check_dead",
+"offset": Vector2( 400, -400 ),
+"params": [  ],
+"size": Vector2( 321, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_die",
+"offset": Vector2( 400, -300 ),
+"params": [  ],
+"size": Vector2( 321, 84.9999 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 138, 109 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 480, -40 ),
+"params": [  ],
+"size": Vector2( 328, 84.9999 ),
+"values": [  ]
+},
+"name": "task10",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 480, 80 ),
+"params": [  ],
+"size": Vector2( 330, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 280, -20 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_check_hungry",
+"offset": Vector2( 400, 320 ),
+"params": [  ],
+"size": Vector2( 336, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_closest_food",
+"offset": Vector2( 400, 440 ),
+"params": [  ],
+"size": Vector2( 358, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 1200, 360 ),
+"params": [  ],
+"size": Vector2( 328, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 1200, 480 ),
+"params": [  ],
+"size": Vector2( 330, 85.0001 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 400 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1380, 600 ),
+"params": [  ],
+"size": Vector2( 341, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 1200, 600 ),
+"size": Vector2( 134, 55.0001 )
+},
+"name": "inverter2",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move_towards_target",
+"offset": Vector2( 1200, 700 ),
+"params": [  ],
+"size": Vector2( 386, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 620 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 800, 560 ),
+"size": Vector2( 134, 109 )
+},
+"name": "selector2",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( 440, 580 ),
+"size": Vector2( 126, 55 )
+},
+"name": "inverter",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 400, 680 ),
+"params": [  ],
+"size": Vector2( 340, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 200, 500 ),
+"size": Vector2( 146, 163 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 0, 20 ),
+"size": Vector2( 140, 140 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( -140, 20 ),
+"size": Vector2( 83, 59.9869 )
+},
+"name": "root",
+"type": 0
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_check_hungry",
+"offset": Vector2( 400, 320 ),
+"params": [  ],
+"size": Vector2( 336, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_closest_food",
+"offset": Vector2( 400, 440 ),
+"params": [  ],
+"size": Vector2( 358, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 1200, 360 ),
+"params": [  ],
+"size": Vector2( 328, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 1200, 480 ),
+"params": [  ],
+"size": Vector2( 330, 85.0001 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 400 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1380, 600 ),
+"params": [  ],
+"size": Vector2( 341, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 1200, 600 ),
+"size": Vector2( 134, 55.0001 )
+},
+"name": "inverter2",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move_towards_target",
+"offset": Vector2( 1200, 700 ),
+"params": [  ],
+"size": Vector2( 386, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 620 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 800, 560 ),
+"size": Vector2( 134, 109 )
+},
+"name": "selector2",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( 440, 580 ),
+"size": Vector2( 126, 55 )
+},
+"name": "inverter",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 400, 680 ),
+"params": [  ],
+"size": Vector2( 340, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 200, 500 ),
+"size": Vector2( 146, 163 )
+},
+"name": "sequence2",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_check_dead",
+"offset": Vector2( 400, -400 ),
+"params": [  ],
+"size": Vector2( 321, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_die",
+"offset": Vector2( 400, -300 ),
+"params": [  ],
+"size": Vector2( 321, 84.9999 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 138, 109 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_die",
+"offset": Vector2( 400, -300 ),
+"params": [  ],
+"size": Vector2( 321, 84.9999 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_check_dead",
+"offset": Vector2( 400, -400 ),
+"params": [  ],
+"size": Vector2( 321, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_closest_food",
+"offset": Vector2( 400, 440 ),
+"params": [  ],
+"size": Vector2( 358, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1380, 600 ),
+"params": [  ],
+"size": Vector2( 341, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 1200, 600 ),
+"size": Vector2( 134, 55.0001 )
+},
+"name": "inverter2",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move_towards_target",
+"offset": Vector2( 1200, 700 ),
+"params": [  ],
+"size": Vector2( 386, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 620 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 1200, 360 ),
+"params": [  ],
+"size": Vector2( 328, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 1200, 480 ),
+"params": [  ],
+"size": Vector2( 330, 85.0001 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 400 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 1200, 360 ),
+"params": [  ],
+"size": Vector2( 328, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 1200, 480 ),
+"params": [  ],
+"size": Vector2( 330, 85.0001 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 400 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1380, 600 ),
+"params": [  ],
+"size": Vector2( 341, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 1200, 600 ),
+"size": Vector2( 134, 55.0001 )
+},
+"name": "inverter2",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move_towards_target",
+"offset": Vector2( 1200, 700 ),
+"params": [  ],
+"size": Vector2( 386, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 620 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 800, 560 ),
+"size": Vector2( 134, 109 )
+},
+"name": "selector2",
+"type": 3
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 1200, 480 ),
+"params": [  ],
+"size": Vector2( 330, 85.0001 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 1200, 360 ),
+"params": [  ],
+"size": Vector2( 328, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1380, 600 ),
+"params": [  ],
+"size": Vector2( 341, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 1200, 600 ),
+"size": Vector2( 134, 55.0001 )
+},
+"name": "inverter2",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1380, 600 ),
+"params": [  ],
+"size": Vector2( 341, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move_towards_target",
+"offset": Vector2( 1200, 700 ),
+"params": [  ],
+"size": Vector2( 386, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 400, 680 ),
+"params": [  ],
+"size": Vector2( 340, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 1200, 360 ),
+"params": [  ],
+"size": Vector2( 328, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 1200, 480 ),
+"params": [  ],
+"size": Vector2( 330, 85.0001 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 400 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1380, 600 ),
+"params": [  ],
+"size": Vector2( 341, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 1200, 600 ),
+"size": Vector2( 134, 55.0001 )
+},
+"name": "inverter2",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move_towards_target",
+"offset": Vector2( 1200, 700 ),
+"params": [  ],
+"size": Vector2( 386, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 620 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 800, 560 ),
+"size": Vector2( 134, 109 )
+},
+"name": "selector2",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( 440, 580 ),
+"size": Vector2( 126, 55 )
+},
+"name": "inverter",
+"type": 14
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 480, -40 ),
+"params": [  ],
+"size": Vector2( 328, 84.9999 ),
+"values": [  ]
+},
+"name": "task10",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 480, 80 ),
+"params": [  ],
+"size": Vector2( 330, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 280, -20 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [  ],
+"data": {
+"fn": "task_check_hungry",
+"offset": Vector2( 400, 320 ),
+"params": [  ],
+"size": Vector2( 336, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 480, -40 ),
+"params": [  ],
+"size": Vector2( 328, 84.9999 ),
+"values": [  ]
+},
+"name": "task10",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 480, 80 ),
+"params": [  ],
+"size": Vector2( 330, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_check_dead",
+"offset": Vector2( 400, -400 ),
+"params": [  ],
+"size": Vector2( 321, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_die",
+"offset": Vector2( 400, -300 ),
+"params": [  ],
+"size": Vector2( 321, 84.9999 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 138, 109 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 480, -40 ),
+"params": [  ],
+"size": Vector2( 328, 84.9999 ),
+"values": [  ]
+},
+"name": "task10",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 480, 80 ),
+"params": [  ],
+"size": Vector2( 330, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 280, -20 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_check_hungry",
+"offset": Vector2( 400, 320 ),
+"params": [  ],
+"size": Vector2( 336, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_closest_food",
+"offset": Vector2( 400, 440 ),
+"params": [  ],
+"size": Vector2( 358, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 1200, 360 ),
+"params": [  ],
+"size": Vector2( 328, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 1200, 480 ),
+"params": [  ],
+"size": Vector2( 330, 85.0001 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 400 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1380, 600 ),
+"params": [  ],
+"size": Vector2( 341, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 1200, 600 ),
+"size": Vector2( 134, 55.0001 )
+},
+"name": "inverter2",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move_towards_target",
+"offset": Vector2( 1200, 700 ),
+"params": [  ],
+"size": Vector2( 386, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 620 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 800, 560 ),
+"size": Vector2( 134, 109 )
+},
+"name": "selector2",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( 440, 580 ),
+"size": Vector2( 126, 55 )
+},
+"name": "inverter",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 400, 680 ),
+"params": [  ],
+"size": Vector2( 340, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 200, 500 ),
+"size": Vector2( 146, 163 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 0, 20 ),
+"size": Vector2( 140, 140 )
+},
+"name": "selector",
+"type": 3
+} ],
+"root": {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_check_dead",
+"offset": Vector2( 400, -400 ),
+"params": [  ],
+"size": Vector2( 321, 85 ),
+"values": [  ]
+},
+"name": "task",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_die",
+"offset": Vector2( 400, -300 ),
+"params": [  ],
+"size": Vector2( 321, 84.9999 ),
+"values": [  ]
+},
+"name": "task2",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 200, -400 ),
+"size": Vector2( 138, 109 )
+},
+"name": "sequence",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 480, -40 ),
+"params": [  ],
+"size": Vector2( 328, 84.9999 ),
+"values": [  ]
+},
+"name": "task10",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 480, 80 ),
+"params": [  ],
+"size": Vector2( 330, 85 ),
+"values": [  ]
+},
+"name": "task11",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 280, -20 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence3",
+"type": 2
+}, {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_check_hungry",
+"offset": Vector2( 400, 320 ),
+"params": [  ],
+"size": Vector2( 336, 85 ),
+"values": [  ]
+},
+"name": "task3",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_find_closest_food",
+"offset": Vector2( 400, 440 ),
+"params": [  ],
+"size": Vector2( 358, 85 ),
+"values": [  ]
+},
+"name": "task4",
+"type": 1
+}, {
+"child": [ {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_enemy_close",
+"offset": Vector2( 1200, 360 ),
+"params": [  ],
+"size": Vector2( 328, 85.0001 ),
+"values": [  ]
+},
+"name": "task5",
+"type": 1
+}, {
+"child": [  ],
+"data": {
+"fn": "task_avoid_enemy",
+"offset": Vector2( 1200, 480 ),
+"params": [  ],
+"size": Vector2( 330, 85.0001 ),
+"values": [  ]
+},
+"name": "task6",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 400 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence4",
+"type": 2
+}, {
+"child": [ {
+"child": [ {
+"child": [  ],
+"data": {
+"fn": "task_is_target_close",
+"offset": Vector2( 1380, 600 ),
+"params": [  ],
+"size": Vector2( 341, 85 ),
+"values": [  ]
+},
+"name": "task7",
+"type": 1
+} ],
+"data": {
+"offset": Vector2( 1200, 600 ),
+"size": Vector2( 134, 55.0001 )
+},
+"name": "inverter2",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_move_towards_target",
+"offset": Vector2( 1200, 700 ),
+"params": [  ],
+"size": Vector2( 386, 85 ),
+"values": [  ]
+},
+"name": "task8",
+"type": 1
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 1000, 620 ),
+"size": Vector2( 146, 109 )
+},
+"name": "sequence5",
+"type": 2
+} ],
+"data": {
+"count": 2,
+"offset": Vector2( 800, 560 ),
+"size": Vector2( 134, 109 )
+},
+"name": "selector2",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( 440, 580 ),
+"size": Vector2( 126, 55 )
+},
+"name": "inverter",
+"type": 14
+}, {
+"child": [  ],
+"data": {
+"fn": "task_consume_food",
+"offset": Vector2( 400, 680 ),
+"params": [  ],
+"size": Vector2( 340, 85.0001 ),
+"values": [  ]
+},
+"name": "task9",
+"type": 1
+} ],
+"data": {
+"count": 4,
+"offset": Vector2( 200, 500 ),
+"size": Vector2( 146, 163 )
+},
+"name": "sequence2",
+"type": 2
+} ],
+"data": {
+"count": 3,
+"offset": Vector2( 0, 20 ),
+"size": Vector2( 140, 140 )
+},
+"name": "selector",
+"type": 3
+} ],
+"data": {
+"offset": Vector2( -140, 20 ),
+"size": Vector2( 83, 59.9869 )
+},
+"name": "root",
+"type": 0
+}
+}
+run_on = 1
+_tree_id = "18472601603966041155"
+
+[node name="Direction" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 50, 0 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Stats" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="GameplayAttributeMap" type="Node" parent="Stats"]
+script = ExtResource( 3 )
+
+[node name="Health" type="Node" parent="Stats/GameplayAttributeMap"]
+script = ExtResource( 2 )
+max_value = 100.0
+current_value = 100.0
+
+[node name="Hunger" type="Node" parent="Stats/GameplayAttributeMap"]
+script = ExtResource( 2 )
+max_value = 100.0
+
+[node name="Energy" type="Node" parent="Stats/GameplayAttributeMap"]
+script = ExtResource( 2 )
+max_value = 100.0
+current_value = 100.0
+
+[node name="AgentUI" parent="." instance=ExtResource( 6 )]
+
+[node name="GenLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_top = -25.0
+margin_right = 20.0
+margin_bottom = -11.0
+text = "1"
+align = 1
+
+[connection signal="attribute_changed" from="Stats/GameplayAttributeMap/Health" to="Stats" method="_on_Health_attribute_changed"]
+[connection signal="attribute_changed" from="Stats/GameplayAttributeMap/Hunger" to="Stats" method="_on_Hunger_attribute_changed"]
+[connection signal="attribute_changed" from="Stats/GameplayAttributeMap/Energy" to="Stats" method="_on_Energy_attribute_changed"]
