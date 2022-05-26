@@ -9,7 +9,7 @@ onready var energy_bar = $StatBox/VBoxContainer/EnergyBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	stat_box.set_target(get_parent())
+	stat_box.set_target(get_owner())
 	EventBus.connect("energy_updated", self, "_on_energy_updated")
 	EventBus.connect("health_updated", self, "_on_health_updated")
 	EventBus.connect("hunger_updated", self, "_on_hunger_updated")

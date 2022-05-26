@@ -102,10 +102,23 @@ window/stretch/aspect="keep"
 
 enabled=PoolStringArray( "res://addons/btree/plugin.cfg", "res://addons/code_simp/plugin.cfg", "res://addons/database/plugin.cfg", "res://addons/godot-gameplay-attributes/plugin.cfg", "res://addons/godot-version-management/plugin.cfg", "res://addons/project-statistics/plugin.cfg" )
 
-[network]
+[input]
 
-limits/websocket_server/max_in_buffer_kb=4096
-limits/websocket_server/max_out_buffer_kb=4096
+camera_drag={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+camera_zoom_in={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+camera_zoom_out={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
 
 [statistics]
 

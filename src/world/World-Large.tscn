@@ -27,8 +27,8 @@ script = ExtResource( 9 )
 prey_scene = ExtResource( 7 )
 predator_scene = ExtResource( 2 )
 arena_offset = 100
-initial_predators = 2
-initial_prey = 4
+initial_predators = 100
+initial_prey = 50
 
 [node name="FoodSpawner" type="Node2D" parent="."]
 script = ExtResource( 4 )
@@ -37,8 +37,8 @@ arena_offset = 100
 available_food = [ ExtResource( 6 ), ExtResource( 5 ) ]
 
 [node name="Arena" type="NinePatchRect" parent="."]
-margin_right = 1022.0
-margin_bottom = 599.0
+margin_right = 7030.0
+margin_bottom = 3726.0
 texture = ExtResource( 1 )
 patch_margin_left = 12
 patch_margin_top = 15
@@ -52,7 +52,7 @@ show_behind_parent = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena/StaticBody2D"]
 position = Vector2( 5.25394, -0.578018 )
-scale = Vector2( 0.790715, 0.996755 )
+scale = Vector2( 0.484112, 6.32499 )
 polygon = PoolVector2Array( -8.10686, 588.488, 18.649, 589.491, 14, 2, -8, 1 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Arena"]
@@ -60,8 +60,8 @@ show_behind_parent = true
 position = Vector2( 1007, 7 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena/StaticBody2D2"]
-position = Vector2( 5.25394, -0.578018 )
-scale = Vector2( 0.790715, 0.996755 )
+position = Vector2( 6005, -1 )
+scale = Vector2( 0.790715, 6.31676 )
 polygon = PoolVector2Array( -8.10686, 588.488, 18.649, 589.491, 14, 2, -8, 1 )
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Arena"]
@@ -69,8 +69,8 @@ show_behind_parent = true
 position = Vector2( 6, 593 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Arena/StaticBody2D3"]
-position = Vector2( 1, -7.00002 )
-scale = Vector2( 0.790715, 0.996755 )
+position = Vector2( 25, 3089 )
+scale = Vector2( 5.43072, 0.996755 )
 polygon = PoolVector2Array( 1287.44, 15.0488, 1287.44, -2.00653, -7.58807, -1.0033, -6.32339, 10.0325 )
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Arena"]
@@ -79,7 +79,7 @@ position = Vector2( 6, 593 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Arena/StaticBody2D4"]
 position = Vector2( -3, -587 )
-scale = Vector2( 0.790715, 0.996755 )
+scale = Vector2( 5.43072, 0.996755 )
 polygon = PoolVector2Array( 1287.44, 15.0488, 1287.44, -4.01306, -7.58807, -1.0033, -6.32339, 10.0325 )
 
 [node name="Obstacles" type="Node2D" parent="Arena"]
@@ -99,16 +99,6 @@ position = Vector2( 567, 74 )
 [node name="Food5" parent="." instance=ExtResource( 6 )]
 position = Vector2( 138, 328 )
 
-[node name="BlueAgent" parent="." instance=ExtResource( 2 )]
-position = Vector2( 160, 159 )
-speed = 75
-look_ahead = 100
-
-[node name="YellowAgent" parent="." instance=ExtResource( 7 )]
-position = Vector2( 757, 182 )
-steer_force = 0.5
-look_ahead = 75
-
 [node name="ControlCam" type="Camera2D" parent="."]
 position = Vector2( 513, 299 )
 current = true
@@ -116,6 +106,12 @@ script = ExtResource( 10 )
 max_zoom = 8.0
 
 [node name="Tween" type="Tween" parent="ControlCam"]
+
+[node name="PredatorAgent" parent="." instance=ExtResource( 2 )]
+position = Vector2( 157, 132 )
+
+[node name="PreyAgent" parent="." instance=ExtResource( 7 )]
+position = Vector2( 741, 451 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true

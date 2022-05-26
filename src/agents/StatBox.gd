@@ -15,7 +15,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	rect_position = target.position + target_offset
+	rect_position = target.global_position + target_offset
 	rect_rotation = 0
 	pass
 

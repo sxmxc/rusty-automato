@@ -3,8 +3,8 @@
 [ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot-gameplay-attributes/nodes/GameplayAttribute.gd" type="Script" id=2]
 [ext_resource path="res://addons/godot-gameplay-attributes/nodes/GameplayAttributeMap.gd" type="Script" id=3]
-[ext_resource path="res://src/agents/BlueAgent.gd" type="Script" id=4]
-[ext_resource path="res://assets/kenney_physicsAssets_v2/PNG/Aliens/alienBlue_round.png" type="Texture" id=5]
+[ext_resource path="res://src/agents/PredatorAgent.gd" type="Script" id=4]
+[ext_resource path="res://assets/red_dood.png" type="Texture" id=5]
 [ext_resource path="res://src/agents/AgentUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://addons/godot-gameplay-attributes/premade_gameplay_effects/AttributeRegenGameplayEffect.gd" type="Script" id=8]
 [ext_resource path="res://src/agents/Stats.gd" type="Script" id=9]
@@ -13,7 +13,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 33.0151
 
-[node name="BlueAgent" type="KinematicBody2D" groups=["blue"]]
+[node name="PredatorAgent" type="KinematicBody2D" groups=["predator"]]
 script = ExtResource( 4 )
 look_ahead = 150
 arena_offset = 100
@@ -996,7 +996,7 @@ tree = {
 "type": 0
 }
 }
-_tree_id = "17114831803966041155"
+_tree_id = "556490613966041155"
 
 [node name="Direction" type="RayCast2D" parent="."]
 enabled = true
@@ -1040,6 +1040,7 @@ attribute_name = "Hunger"
 increment_per_second = 1.0
 
 [node name="AgentUI" parent="." instance=ExtResource( 6 )]
+follow_viewport_enable = true
 
 [node name="GenLabel" type="Label" parent="."]
 anchor_left = 0.5

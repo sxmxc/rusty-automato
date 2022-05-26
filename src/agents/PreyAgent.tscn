@@ -3,16 +3,17 @@
 [ext_resource path="res://addons/btree/script/btree.gd" type="Script" id=1]
 [ext_resource path="res://addons/godot-gameplay-attributes/nodes/GameplayAttribute.gd" type="Script" id=2]
 [ext_resource path="res://addons/godot-gameplay-attributes/nodes/GameplayAttributeMap.gd" type="Script" id=3]
-[ext_resource path="res://src/agents/YellowAgent.gd" type="Script" id=4]
-[ext_resource path="res://assets/kenney_physicsAssets_v2/PNG/Aliens/alienYellow_round.png" type="Texture" id=5]
+[ext_resource path="res://src/agents/PreyAgent.gd" type="Script" id=4]
+[ext_resource path="res://assets/blue_dood.png" type="Texture" id=5]
 [ext_resource path="res://src/agents/AgentUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/agents/Stats.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 33.0
 
-[node name="YellowAgent" type="KinematicBody2D" groups=["yellow"]]
+[node name="PreyAgent" type="KinematicBody2D" groups=["prey"]]
 script = ExtResource( 4 )
+speed = 250
 num_rays = 20
 look_ahead = 100
 
@@ -1307,7 +1308,7 @@ tree = {
 }
 }
 run_on = 1
-_tree_id = "18472601603966041155"
+_tree_id = "36873738283966041155"
 
 [node name="Direction" type="RayCast2D" parent="."]
 enabled = true
@@ -1340,6 +1341,7 @@ max_value = 100.0
 current_value = 100.0
 
 [node name="AgentUI" parent="." instance=ExtResource( 6 )]
+follow_viewport_enable = true
 
 [node name="GenLabel" type="Label" parent="."]
 anchor_left = 0.5

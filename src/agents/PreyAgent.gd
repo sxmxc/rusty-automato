@@ -76,7 +76,7 @@ func task_enemy_close(task):
 				[self])
 		if result:
 			dangers[i] = 1
-			if get_tree().get_nodes_in_group("blue").has(result.collider):
+			if get_tree().get_nodes_in_group("predator").has(result.collider):
 				threat = result.collider
 				task.succeed()
 				return
@@ -98,12 +98,14 @@ func _physics_process(delta):
 	update()
 
 func _draw():
-	if target_food:
-		draw_line(Vector2.ZERO, (target_food.position - position).rotated(-rotation), Color.blue)
-		draw_circle((target_food.position - position).rotated(-rotation), 5, Color.blue)
-	for i in ray_directions.size():
-		if dangers[i] == 1:
-			draw_line(Vector2.ZERO,ray_directions[i] * look_ahead, Color.green)
-			draw_circle(ray_directions[i] * look_ahead, 5, Color.green)
-		else:
-			draw_line(Vector2.ZERO,ray_directions[i] * look_ahead, Color.red)
+#	if target_food:
+#		draw_line(Vector2.ZERO, (target_food.position - position).rotated(-rotation), Color.blue)
+#		draw_circle((target_food.position - position).rotated(-rotation), 5, Color.blue)
+#	for i in ray_directions.size():
+#		if dangers[i] == 1:
+#			draw_line(Vector2.ZERO,ray_directions[i] * look_ahead, Color.green)
+#			draw_circle(ray_directions[i] * look_ahead, 5, Color.green)
+#		else:
+#			draw_line(Vector2.ZERO,ray_directions[i] * look_ahead, Color.red)
+
+	pass

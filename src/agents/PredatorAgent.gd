@@ -34,7 +34,7 @@ func task_prey_near(task):
 				[self])
 		if result:
 			dangers[i] = 1
-			if get_tree().get_nodes_in_group("yellow").has(result.collider):
+			if get_tree().get_nodes_in_group("prey").has(result.collider):
 				prey = result.collider
 				task.succeed()
 				return
@@ -93,16 +93,17 @@ func _physics_process(delta):
 	update()
 	
 func _draw():
-	if prey:
-		draw_line(Vector2.ZERO, (prey.position - position).rotated(-rotation), Color.blue)
-		draw_circle((prey.position - position).rotated(-rotation), 5, Color.blue)
-	if target:
-		draw_line(Vector2.ZERO, (target - position).rotated(-rotation), Color.blue)
-		draw_circle((target - position).rotated(-rotation), 5, Color.blue)
-	for i in ray_directions.size():
-		if dangers[i] == 1:
-			draw_line(Vector2.ZERO,ray_directions[i] * look_ahead, Color.green)
-			draw_circle(ray_directions[i] * look_ahead, 5, Color.green)
-		else:
-			draw_line(Vector2.ZERO,ray_directions[i] * look_ahead, Color.red)
-			draw_circle(ray_directions[i] * look_ahead, 5, Color.red)
+#	if prey != null:
+#		draw_line(Vector2.ZERO, (prey.position - position).rotated(-rotation), Color.blue)
+#		draw_circle((prey.position - position).rotated(-rotation), 5, Color.blue)
+#	if target:
+#		draw_line(Vector2.ZERO, (target - position).rotated(-rotation), Color.blue)
+#		draw_circle((target - position).rotated(-rotation), 5, Color.blue)
+#	for i in ray_directions.size():
+#		if dangers[i] == 1:
+#			draw_line(Vector2.ZERO,ray_directions[i] * look_ahead, Color.green)
+#			draw_circle(ray_directions[i] * look_ahead, 5, Color.green)
+#		else:
+#			draw_line(Vector2.ZERO,ray_directions[i] * look_ahead, Color.red)
+#			draw_circle(ray_directions[i] * look_ahead, 5, Color.red)
+	pass
